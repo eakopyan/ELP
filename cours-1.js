@@ -1,10 +1,10 @@
-/*let a = function(a,b){
+let a = function(a,b){
   return a+b
 }
 console.log(a(4,5))
-*/
 
-/*
+
+
 let mult1 = function(a,b){
   return a*b
 }
@@ -17,10 +17,10 @@ function multiplieur(a){
 }
 x = multiplieur(2)
 console.log("Result multiplieur = "+x(8))
-*/
+
 
 // Les deux fonctions suivantes renvoient la même chose !
-/*
+
 function create(){
   let reponse = 23
   return function (x) {
@@ -39,16 +39,16 @@ function create(){
 }
 let a = new create()
 console.log(a.calc(12))
-*/
+
 
 //Nombre d'arguments et principe de curryfication
-/*function moins(a,b,c) {
+function moins(a,b,c) {
   return (a-b)
 }
 console.log("moins(3,2) = "+moins(3,2))           //affiche 1
 console.log("moins(3,2,4,8) = "+moins(3,2,4,8))   //affiche 1
 console.log("moins(2) = "+moins(2))               //affiche NaN
-*/
+
 
 valeurs = [0,2,4,6,8,10]
 
