@@ -1,5 +1,6 @@
-/** Principe du callback : très utilisé dans les systèmes asynchrones (l'exécution des fonctions n'est pas bloquante : 
-l'ordre d'exécution peut changer selon la rapidité du réseau, le trafic de données, etc.)
+/** Principe du callback : le mécanisme de callback est une solution pour ne pas bloquer une exécution monothreadée. 
+Très utilisé dans les systèmes asynchrones (l'exécution des fonctions n'est pas bloquante : l'ordre d'exécution peut 
+changer selon la rapidité du réseau, le trafic de données, etc.)
 Approche fonctionnelle (par opposition à l'impérative) : pas de retour au programme de base ( = indentations de programmes). 
 Les fonctions servent de "points de rupture" dans le scheduler JavaScript (exécution des programmes). Toute méthode impérative 
 possède un équivalent en fonctionnel.
@@ -53,3 +54,47 @@ function f() {
   setTimeout(f())     // rajoute l'appel récursif en fin de liste
 }
 f()
+
+//----------------------------------------------------------
+/** Lire le contenu d'un fichier :fs.readFile() (charger la fonction à l'aide d'un require('fs'))
+* signature : fs.readFile(<string/buffer/URL/int> path [<object/string> options], <function> callback)
+* <error> err
+* <string/buffer> data
+*/
+fs.readFile('/etc/passwd', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
+//---------------------------------------------------------
+/** Faire un GET sur une page WEB : http.request() (charger la fonction à l'aide d'un require('http'))
+* signature : http.request(<object/string/URL> options, <function> callback)
+*/
+
+const options = {
+  hostname: 'www.google.com',
+  port: 80,
+  path: '/upload',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': Buffer.byteLength(postData)
+  }
+};
+
+const req = http.request(options, (res) => {
+  console.log(`STATUS: ${res.statusCode}`);
+  console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+  res.setEncoding('utf8');
+  res.on('data', (chunk) => {
+    console.log(`BODY: ${chunk}`);
+  });
+  res.on('end', () => {
+    console.log('No more data in response.');
+  });
+});
+
+req.on('error', (e) => {
+  console.error(`problem with request: ${e.message}`);
+});
+
