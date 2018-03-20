@@ -81,6 +81,6 @@ encode lst = case lst of
   
 quicksort lst = case lst of
   [] -> []
-  (x:xs) -> quicksort [y | y <- xs, y<x] ++ x ++ quicksort [y | y <- xs, y >= x]
+  (x:xs) -> quicksort [y | y <- xs, y<x] ++ [x] ++ quicksort [y | y <- xs, y >= x]
 
   
