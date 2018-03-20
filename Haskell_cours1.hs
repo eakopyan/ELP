@@ -1,3 +1,10 @@
+-- Compilation avec un main : 
+-- ghc fichier.hs -o executable
+-- ./executable
+
+-- Compilation sans main :
+-- ghci fichier.hs
+
 import System.Environment -- for getArgs
 
 -- Vérification de l'ordre dans une liste
