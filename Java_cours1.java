@@ -46,3 +46,22 @@ public class SimpleFrameworkMain {
 	}
     }
 }
+
+//======================================== fichier Animal.java ===============================================
+package fr.insalyon.tc.framework; 
+
+public abstract class Animal {
+    public abstract String scream();
+}
+
+
+
+//========================================== fichier Bee.java ================================================
+package fr.insalyon.tc.framework;
+
+public class Bee extends Animal {
+  public String scream() {
+    return "buzz";
+  }
+}
+
