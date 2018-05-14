@@ -67,6 +67,7 @@ public class Copy {
         
       case 1 : // lecture fichier src et écriture sur sortie standard
         fin = new FileInputStream(args[0]);
+
         fout = new FileOutputStream(System.out);
         copy(fin, fout);
         break;
@@ -80,15 +81,15 @@ public class Copy {
       default :
         System.err.println("Veuillez entrer au maximum 2 arguments.");
         break;
+    }
   }
   
   private static void copy(InputStream is, OutputStream os) throws IOException {
     int val = fin.read();
     fout.write(val);
   }
-    
+   
 }
-  
 /** Décoration de flux
 Un décorateur réalise des traitements supplémentaires avant ou après la transmission qui est déléguée au 
 flux à partir duquel il est construit.
@@ -132,4 +133,22 @@ La déserialisation est le processus inverse.
 Un objet peut ainsi être facilement sauvegardé dans un fichier ou transféré sur le réseau.
 */
 import java.io.Serializable;
+  // voir fichiers Message.java et EcrireMessage.java
   
+  
+// ==================================================================================================
+/** Sockets réseau
+Le package java.net fournit un ensemble de classes pour l’implémentation d’applications réseau comme les adresses, modélisant des 
+adresses IP, ou les sockets, modélisant les extrémités d’un canal de communication bidirectionnelle entre deux processus via le 
+réseau.
+*/
+import java.net.* ;
+
+// La classe SocketServer permet au processus serveur d’attendre et d’accepter la connexion d’un processus client.
+ServerSocket connection = new ServerSocket(numeroPort);
+Socket socket = connection.accept(); // renvoie un objet Socket lorsque la connexion est établie
+
+Socket socket = new Socket("localhost", numeroPort); // côté client
+
+InputStream is = socket.getInputStream();
+OutputStream os = socket.getOutputStream();
